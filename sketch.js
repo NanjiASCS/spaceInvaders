@@ -25,12 +25,58 @@ Extra credit:
 
 */
 
+var shipX;
+var shipImage;
+var blasterColor;
+var blasterShot;
+var blasterY;
+var blasterX;
 function preload() {
-
+shipImage = loadImage('images/spaceship.png');
 }
 
 function setup() {
+  createCanvas(500,500);
+  background("black");
+shipX = width/2 - 25;
+blasterY = height - 75;
+blasterX = shipX + 32; 
+isShooting = false;
 }
 
+
+
 function draw() {
+  rect(shipX, height - 100, 50, 100);
+  background("black");
+  image(shipImage, shipX, height - 100);
+  
+  
+  rect(blasterX, blasterY, 10, 10);
+  
+  blasterColor = "yellow"
+  fill(blasterColor)
+
+  if (keyCode === 32) {
+     isShooting = true;
+     blasterX = shipX + 32;
+     blasterY = height - 75;
+    if (isShooting) {
+      blasterY -= 3;
+      console.log("BANG");
+    }
+  }  
+} 
+
+
+function keyPressed() {
+  if (keyCode === RIGHT_ARROW) {
+    shipX += 20;
+  }
+
+  if (keyCode === LEFT_ARROW) {
+    shipX -= 20;
+}
+
+  
 }
